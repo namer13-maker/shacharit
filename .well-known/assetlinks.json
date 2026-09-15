@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "io.github.namer13_maker.twa",
+        "sha256_cert_fingerprints": ["6D:D2:64:AD:B7:8B:C9:31:A7:43:2E:9F:B3:E0:C7:4A:D1:AA:4E:5B:1A:CD:51:D3:BE:BA:7F:CF:B3:AD:0A:D2"]
+      }
+    }]
