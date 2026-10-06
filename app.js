@@ -148,10 +148,10 @@ function refreshClassLists(){
   var ids=classIds();
   var opts=ids.map(function(id){return '<option value="'+id+'"'+(id===curClass?' selected':'')+'>'+esc(D.classes[id].name)+'</option>';}).join('');
   if(!ids.length) opts='<option value="">— אין כיתות —</option>';
-  ['#class-select','#class-select-2','#class-select-3'].forEach(function(sel){ var el=$(sel); if(el) el.innerHTML=opts; });
+  ['#class-select','#class-select-2','#class-select-3','#class-select-4'].forEach(function(sel){ var el=$(sel); if(el) el.innerHTML=opts; });
 }
 function onClassChange(v){ curClass=v; refreshClassLists(); rerenderActive(); }
-['#class-select','#class-select-2','#class-select-3'].forEach(function(sel){
+['#class-select','#class-select-2','#class-select-3','#class-select-4'].forEach(function(sel){
   var el=$(sel); if(el) el.onchange=function(){ onClassChange(this.value); };
 });
 $('#class-add').onclick=function(){
@@ -299,6 +299,15 @@ $('#btn-save-alerts').onclick=function(){if(!curClass)return;C().alerts.days=Mat
 function download(name,text,type){var blob=new Blob(['﻿'+text],{type:(type||'application/json')+';charset=utf-8'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},800);}
 $('#btn-export').onclick=function(){download('shacharit-'+layer+'-'+today()+'.json',JSON.stringify(D,null,1));toast('קובץ הגיבוי ירד');};
 $('#btn-csv').onclick=function(){var rows=[['כיתה','תאריך','יום','תלמיד','סטטוס','הערה']];for(var cid in D.classes){var cname=D.classes[cid].name,a=D.att[cid]||{},s=D.students[cid]||{};Object.keys(a).sort().forEach(function(d){for(var id in a[d]){if(!s[id])continue;rows.push([cname,d,weekday(d),s[id].name,STATUS[a[d][id].s]?STATUS[a[d][id].s].label:'',a[d][id].n||'']);}});}var csv=rows.map(function(r){return r.map(function(c){return '"'+String(c).replace(/"/g,'""')+'"';}).join(',');}).join('\n');download('shacharit-'+today()+'.csv',csv,'text/csv');toast('הקובץ ירד');};
+$('#btn-change-code').onclick=function(){
+  var nc=prompt('קוד שכבה חדש — כל הכיתות והנתונים הקיימים יועברו אליו.\nשימו לב: כל המורים יצטרכו לעבור לקוד החדש.');
+  nc=normalizeCode(nc);
+  if(!nc)return;
+  if(nc===layer){toast('זה כבר הקוד הנוכחי');return;}
+  function finish(){try{localStorage.setItem(CACHE_PREFIX+nc,JSON.stringify(D));localStorage.setItem(LKEY,nc);}catch(e){}toast('הקוד הוחלף — טוען מחדש');setTimeout(function(){location.reload();},700);}
+  if(online&&db){ db.ref('layers/'+nc).set(D).then(finish).catch(function(){toast('שגיאה בהעברה, נסו שוב');}); }
+  else { finish(); }
+};
 $('#btn-logout').onclick=function(){if(!confirm('לצאת ולהחליף קוד שכבה? הנתונים נשמרים בענן ותחזרו אליהם עם אותו קוד.'))return;try{localStorage.removeItem(LKEY);}catch(e){}location.reload();};
 
 /* ============ שער כניסה ============ */
