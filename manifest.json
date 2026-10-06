@@ -1,7 +1,7 @@
 {
   "name": "שחרית — נוכחות תפילה",
   "short_name": "שחרית",
-  "description": "מעקב נוכחות בתפילת שחרית לכיתה",
+  "description": "מעקב נוכחות בתפילת שחרית — משותף לשכבה",
   "lang": "he",
   "dir": "rtl",
   "start_url": "./index.html",

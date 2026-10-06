@@ -16,57 +16,33 @@
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#16223d;
-  --ink-2:#22345a;
-  --parchment:#f7f2e8;
-  --page:#fffdf8;
-  --rule:#e3dac6;
-  --gold:#b08324;
-  --gold-soft:#f0e2bf;
-  --ok:#2f6f5e;
-  --ok-soft:#e3efea;
-  --late:#c2621f;
-  --late-soft:#fbebdf;
-  --excused:#4a5b86;
-  --excused-soft:#e8ecf6;
-  --absent:#8e2f3f;
-  --absent-soft:#f8e6e8;
-  --muted:#6f6858;
-  --shadow:0 1px 2px rgba(22,34,61,.06);
+  --ink:#16223d; --ink-2:#22345a;
+  --parchment:#f7f2e8; --page:#fffdf8; --rule:#e3dac6;
+  --gold:#b08324; --gold-soft:#f0e2bf;
+  --ok:#2f6f5e; --ok-soft:#e3efea;
+  --late:#c2621f; --late-soft:#fbebdf;
+  --excused:#4a5b86; --excused-soft:#e8ecf6;
+  --absent:#8e2f3f; --absent-soft:#f8e6e8;
+  --muted:#6f6858; --shadow:0 1px 2px rgba(22,34,61,.06);
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
-body{
-  font-family:'Heebo',-apple-system,'Segoe UI',Arial,sans-serif;
-  background:var(--parchment);
-  color:var(--ink);
-  font-size:15px;
-  line-height:1.5;
-  padding-bottom:calc(72px + env(safe-area-inset-bottom));
-  -webkit-font-smoothing:antialiased;
-}
+body{font-family:'Heebo',-apple-system,'Segoe UI',Arial,sans-serif;background:var(--parchment);color:var(--ink);font-size:15px;line-height:1.5;padding-bottom:calc(72px + env(safe-area-inset-bottom));-webkit-font-smoothing:antialiased}
 h1,h2,h3{font-family:'Frank Ruhl Libre','Heebo',serif;margin:0;font-weight:700;letter-spacing:-.01em}
 button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
 button{cursor:pointer;border:none;background:none;padding:0}
 :focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:4px}
 
-/* ---------- header ---------- */
-.topbar{
-  background:var(--ink);
-  color:#fff;
-  padding:calc(10px + env(safe-area-inset-top)) 16px 12px;
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  border-bottom:2px solid var(--gold);
-}
+.topbar{background:var(--ink);color:#fff;padding:calc(10px + env(safe-area-inset-top)) 16px 12px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:2px solid var(--gold)}
 .brand{display:flex;align-items:baseline;gap:9px}
 .brand h1{font-size:23px;color:#fff;font-weight:900}
 .brand .sub{font-size:11.5px;color:var(--gold-soft);letter-spacing:.02em}
-.klass{font-size:12px;color:#c9d2e4;text-align:left;max-width:45%;line-height:1.3}
+.klass{font-size:12px;color:#c9d2e4;text-align:left;max-width:48%;line-height:1.3}
+.sync-dot{display:inline-block;width:7px;height:7px;border-radius:99px;background:#6f6858;margin-inline-start:5px;vertical-align:middle}
+.sync-dot.live{background:#57b894}.sync-dot.off{background:#c2621f}
 
-/* ---------- layout ---------- */
 .wrap{max-width:760px;margin:0 auto;padding:14px 14px 20px}
-.view{display:none}
-.view.on{display:block}
+.view{display:none}.view.on{display:block}
 .sheet{background:var(--page);border:1px solid var(--rule);border-radius:12px;box-shadow:var(--shadow)}
 .sheet + .sheet{margin-top:14px}
 .sheet-head{padding:12px 14px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;gap:10px}
@@ -74,17 +50,12 @@ button{cursor:pointer;border:none;background:none;padding:0}
 .sheet-body{padding:14px}
 .hint{font-size:12.5px;color:var(--muted);line-height:1.55}
 
-/* ---------- day strip (hero) ---------- */
-.day{
-  background:var(--ink);
-  color:#fff;border-radius:12px;padding:14px 14px 12px;margin-bottom:14px;
-  box-shadow:0 2px 10px rgba(22,34,61,.16);
-}
+.classbar{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.classbar select{flex:1;padding:11px 12px;border:1px solid var(--rule);border-radius:10px;background:var(--page);font-weight:600;font-size:15px;box-shadow:var(--shadow)}
+
+.day{background:var(--ink);color:#fff;border-radius:12px;padding:14px 14px 12px;margin-bottom:14px;box-shadow:0 2px 10px rgba(22,34,61,.16)}
 .day-nav{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.day-nav button.arrow{
-  width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.1);
-  color:#fff;font-size:19px;line-height:1;display:grid;place-items:center;
-}
+.day-nav button.arrow{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.1);color:#fff;font-size:19px;line-height:1;display:grid;place-items:center}
 .day-nav button.arrow:active{background:rgba(255,255,255,.22)}
 .day-when{text-align:center;flex:1;min-width:0}
 .day-heb{font-family:'Frank Ruhl Libre',serif;font-size:21px;font-weight:700;color:#fff}
@@ -94,64 +65,36 @@ button{cursor:pointer;border:none;background:none;padding:0}
 .meter i{display:block;height:100%;background:var(--gold);border-radius:99px;transition:width .35s ease}
 .day-count{font-size:12px;color:#e6dcc2;white-space:nowrap}
 .day-tools{display:flex;gap:8px;margin-top:11px}
-.day-tools button{
-  flex:1;background:rgba(255,255,255,.1);color:#fff;border-radius:9px;padding:8px;
-  font-size:12.5px;font-weight:500;
-}
+.day-tools button{flex:1;background:rgba(255,255,255,.1);color:#fff;border-radius:9px;padding:8px;font-size:12.5px;font-weight:500}
 .day-tools button:active{background:rgba(255,255,255,.2)}
 .datepick{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
 
-/* ---------- student rows ---------- */
-.row{
-  background:var(--page);border:1px solid var(--rule);border-radius:11px;
-  padding:10px 12px 11px;margin-bottom:8px;box-shadow:var(--shadow);
-}
+.row{background:var(--page);border:1px solid var(--rule);border-radius:11px;padding:10px 12px 11px;margin-bottom:8px;box-shadow:var(--shadow)}
 .row.done{border-color:var(--gold-soft)}
 .row-top{display:flex;align-items:center;gap:9px;margin-bottom:9px}
-.sigil{
-  width:29px;height:29px;flex:none;border-radius:8px;background:var(--ink);
-  color:var(--gold-soft);display:grid;place-items:center;
-  font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:14px;
-}
+.sigil{width:29px;height:29px;flex:none;border-radius:8px;background:var(--ink);color:var(--gold-soft);display:grid;place-items:center;font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:14px}
 .row-name{font-weight:600;font-size:15px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .note-btn{font-size:11.5px;color:var(--muted);padding:4px 8px;border:1px solid var(--rule);border-radius:7px;flex:none}
 .note-btn.has{color:var(--gold);border-color:var(--gold-soft);background:#fdf8ec}
 .seg{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
-.seg button{
-  padding:9px 2px;border-radius:8px;border:1px solid var(--rule);background:#fbf7ef;
-  font-size:12.5px;font-weight:500;color:var(--muted);transition:background .12s,color .12s;
-}
+.seg button{padding:9px 2px;border-radius:8px;border:1px solid var(--rule);background:#fbf7ef;font-size:12.5px;font-weight:500;color:var(--muted);transition:background .12s,color .12s}
 .seg button[aria-pressed="true"]{color:#fff;border-color:transparent;font-weight:600}
 .seg button[data-s="ontime"][aria-pressed="true"]{background:var(--ok)}
 .seg button[data-s="late"][aria-pressed="true"]{background:var(--late)}
 .seg button[data-s="excused"][aria-pressed="true"]{background:var(--excused)}
 .seg button[data-s="absent"][aria-pressed="true"]{background:var(--absent)}
-.note-wrap{margin-top:8px;display:none}
-.note-wrap.open{display:block}
-.note-wrap input{
-  width:100%;padding:8px 10px;border:1px solid var(--rule);border-radius:8px;
-  background:#fbf7ef;font-size:13px;
-}
+.note-wrap{margin-top:8px;display:none}.note-wrap.open{display:block}
+.note-wrap input{width:100%;padding:8px 10px;border:1px solid var(--rule);border-radius:8px;background:#fbf7ef;font-size:13px}
 
-/* ---------- pills / chips ---------- */
 .chips{display:flex;gap:6px;flex-wrap:wrap}
-.chip{
-  padding:7px 13px;border-radius:99px;border:1px solid var(--rule);
-  background:var(--page);font-size:12.5px;font-weight:500;color:var(--muted);
-}
+.chip{padding:7px 13px;border-radius:99px;border:1px solid var(--rule);background:var(--page);font-size:12.5px;font-weight:500;color:var(--muted)}
 .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-.tag{display:inline-block;padding:3px 9px;border-radius:99px;font-size:11.5px;font-weight:600}
-.tag.ontime{background:var(--ok-soft);color:var(--ok)}
-.tag.late{background:var(--late-soft);color:var(--late)}
-.tag.excused{background:var(--excused-soft);color:var(--excused)}
-.tag.absent{background:var(--absent-soft);color:var(--absent)}
 
-/* ---------- stats ---------- */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:14px}
 .stat{background:var(--page);border:1px solid var(--rule);border-radius:11px;padding:11px 6px;text-align:center}
 .stat b{display:block;font-family:'Frank Ruhl Libre',serif;font-size:23px;font-weight:700;line-height:1.1}
 .stat span{font-size:11px;color:var(--muted)}
-.stat.s-ontime b{color:var(--ok)} .stat.s-late b{color:var(--late)} .stat.s-absent b{color:var(--absent)}
+.stat.s-ontime b{color:var(--ok)}.stat.s-late b{color:var(--late)}.stat.s-absent b{color:var(--absent)}
 
 .donut-row{display:flex;align-items:center;gap:16px}
 .donut{width:118px;height:118px;flex:none}
@@ -160,111 +103,91 @@ button{cursor:pointer;border:none;background:none;padding:0}
 .legend i{width:9px;height:9px;border-radius:3px;flex:none}
 .legend b{margin-inline-start:auto;font-weight:600;font-variant-numeric:tabular-nums}
 
-/* ---------- lists ---------- */
 .lines > *{padding:11px 14px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:10px}
 .lines > *:last-child{border-bottom:none}
-.rank{
-  width:24px;height:24px;border-radius:7px;background:var(--parchment);color:var(--ink);
-  display:grid;place-items:center;font-size:12px;font-weight:700;flex:none;
-  font-family:'Frank Ruhl Libre',serif;
-}
+.rank{width:24px;height:24px;border-radius:7px;background:var(--parchment);color:var(--ink);display:grid;place-items:center;font-size:12px;font-weight:700;flex:none;font-family:'Frank Ruhl Libre',serif}
 .rank.top{background:var(--gold);color:#fff}
 .grow{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .num{font-variant-numeric:tabular-nums;font-weight:600;font-size:13.5px}
 .alert{background:#fdf1f2;border-color:#f0d7da}
 .alert .grow small{display:block;color:var(--absent);font-size:11.5px}
 
-/* ---------- forms ---------- */
 label.f{display:block;font-size:12.5px;color:var(--muted);margin-bottom:4px}
-.field{
-  width:100%;padding:10px 11px;border:1px solid var(--rule);border-radius:9px;
-  background:#fbf7ef;font-size:14px;margin-bottom:11px;
-}
+.field{width:100%;padding:10px 11px;border:1px solid var(--rule);border-radius:9px;background:#fbf7ef;font-size:14px;margin-bottom:11px}
 textarea.field{min-height:92px;resize:vertical;line-height:1.6}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .three{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.btn{
-  display:block;width:100%;padding:12px;border-radius:10px;background:var(--ink);color:#fff;
-  font-size:14px;font-weight:600;text-align:center;
-}
+.btn{display:block;width:100%;padding:12px;border-radius:10px;background:var(--ink);color:#fff;font-size:14px;font-weight:600;text-align:center}
 .btn:active{background:var(--ink-2)}
 .btn.gold{background:var(--gold)}
 .btn.ghost{background:transparent;border:1px solid var(--rule);color:var(--ink)}
 .btn.danger{background:transparent;border:1px solid #e6c3c8;color:var(--absent)}
 .btn + .btn{margin-top:8px}
-.btn-row{display:flex;gap:8px}
-.btn-row .btn{margin-top:0}
+.btn-row{display:flex;gap:8px}.btn-row .btn{margin-top:0}
 .icon-btn{width:34px;height:34px;border-radius:8px;display:grid;place-items:center;color:var(--muted);font-size:15px;flex:none}
 .icon-btn:active{background:var(--parchment)}
 
-/* ---------- empty ---------- */
 .empty{text-align:center;padding:34px 18px;color:var(--muted)}
 .empty .mark{font-family:'Frank Ruhl Libre',serif;font-size:34px;color:var(--gold);display:block;margin-bottom:6px}
 .empty p{margin:0 0 14px;font-size:13.5px;line-height:1.6}
 
-/* ---------- bottom nav ---------- */
-.tabs{
-  position:fixed;bottom:0;inset-inline:0;background:var(--page);
-  border-top:1px solid var(--rule);display:flex;z-index:40;
-  padding-bottom:env(safe-area-inset-bottom);
-  box-shadow:0 -2px 12px rgba(22,34,61,.05);
-}
-.tabs button{
-  flex:1;padding:8px 2px 9px;display:flex;flex-direction:column;align-items:center;gap:3px;
-  font-size:11px;color:var(--muted);font-weight:500;
-}
+.tabs{position:fixed;bottom:0;inset-inline:0;background:var(--page);border-top:1px solid var(--rule);display:flex;z-index:40;padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -2px 12px rgba(22,34,61,.05)}
+.tabs button{flex:1;padding:8px 2px 9px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;color:var(--muted);font-weight:500}
 .tabs button svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.tabs button.on{color:var(--ink)}
-.tabs button.on svg{stroke:var(--gold)}
+.tabs button.on{color:var(--ink)}.tabs button.on svg{stroke:var(--gold)}
 
-/* ---------- toast ---------- */
-#toast{
-  position:fixed;bottom:calc(84px + env(safe-area-inset-bottom));inset-inline:0;margin:0 auto;
-  width:max-content;max-width:88%;background:var(--ink);color:#fff;
-  padding:10px 18px;border-radius:99px;font-size:13px;z-index:60;
-  opacity:0;transform:translateY(8px);pointer-events:none;transition:.22s;
-}
+#toast{position:fixed;bottom:calc(84px + env(safe-area-inset-bottom));inset-inline:0;margin:0 auto;width:max-content;max-width:88%;background:var(--ink);color:#fff;padding:10px 18px;border-radius:99px;font-size:13px;z-index:60;opacity:0;transform:translateY(8px);pointer-events:none;transition:.22s}
 #toast.on{opacity:1;transform:none}
 
-@media (min-width:640px){
-  .stats{gap:10px}
-  body{font-size:15.5px}
-}
+/* gate (login) */
+#gate{position:fixed;inset:0;background:var(--parchment);z-index:80;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px;text-align:center}
+#gate .mark{width:72px;height:72px;border-radius:18px;background:var(--ink);color:var(--gold-soft);display:grid;place-items:center;font-family:'Frank Ruhl Libre',serif;font-size:40px;font-weight:900;margin-bottom:18px;border:1px solid var(--gold)}
+#gate h2{font-size:24px;margin-bottom:6px}
+#gate p{font-size:13.5px;color:var(--muted);margin:0 0 22px;max-width:320px;line-height:1.6}
+#gate .box{width:100%;max-width:330px}
+#gate input{width:100%;padding:13px;border:1px solid var(--rule);border-radius:11px;background:var(--page);font-size:16px;text-align:center;margin-bottom:10px}
+#gate .err{color:var(--absent);font-size:12.5px;min-height:18px;margin-bottom:6px}
+
+@media (min-width:640px){.stats{gap:10px}body{font-size:15.5px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-@media print{
-  .tabs,.topbar,.day,.chips,.btn,.btn-row,.note-btn{display:none!important}
-  body{background:#fff;padding:0}
-  .sheet{border:none;box-shadow:none}
-}
+@media print{.tabs,.topbar,.day,.chips,.btn,.btn-row,.note-btn,.classbar{display:none!important}body{background:#fff;padding:0}.sheet{border:none;box-shadow:none}}
 </style>
 </head>
 <body>
 
-<header class="topbar">
-  <div class="brand">
-    <h1>שחרית</h1>
-    <span class="sub">נוכחות תפילה</span>
+<!-- ============ שער כניסה ============ -->
+<div id="gate">
+  <div class="mark">ש</div>
+  <h2>שחרית</h2>
+  <p id="gate-msg">הקלידו את קוד השכבה כדי להיכנס למערכת הנוכחות המשותפת.</p>
+  <div class="box">
+    <input type="text" id="gate-code" placeholder="קוד שכבה" autocomplete="off" autocapitalize="off" spellcheck="false">
+    <div class="err" id="gate-err"></div>
+    <button class="btn" id="gate-enter">כניסה</button>
+    <button class="btn ghost" id="gate-offline" style="margin-top:8px">כניסה ללא חיבור (מכשיר זה בלבד)</button>
   </div>
-  <div class="klass" id="klass-label"></div>
+</div>
+
+<header class="topbar">
+  <div class="brand"><h1>שחרית</h1><span class="sub">נוכחות תפילה</span></div>
+  <div class="klass"><span id="klass-label"></span><span class="sync-dot" id="sync-dot" title="מצב סנכרון"></span></div>
 </header>
 
 <div class="wrap">
 
-<!-- ==================== נוכחות ==================== -->
+<!-- נוכחות -->
 <section class="view on" id="v-entry">
+  <div class="classbar">
+    <select id="class-select"></select>
+    <button class="icon-btn" id="class-add" title="כיתה חדשה" style="border:1px solid var(--rule)">＋</button>
+  </div>
   <div class="day">
     <div class="day-nav">
       <button class="arrow" id="day-next" aria-label="יום הבא">›</button>
-      <button class="day-when" id="day-open">
-        <div class="day-heb" id="day-heb">—</div>
-        <div class="day-greg" id="day-greg"></div>
-      </button>
+      <button class="day-when" id="day-open"><div class="day-heb" id="day-heb">—</div><div class="day-greg" id="day-greg"></div></button>
       <button class="arrow" id="day-prev" aria-label="יום קודם">‹</button>
     </div>
-    <div class="day-foot">
-      <div class="meter"><i id="day-meter" style="width:0%"></i></div>
-      <div class="day-count" id="day-count"></div>
-    </div>
+    <div class="day-foot"><div class="meter"><i id="day-meter" style="width:0%"></i></div><div class="day-count" id="day-count"></div></div>
     <div class="day-tools">
       <button id="btn-today">היום</button>
       <button id="btn-all-ontime">סימון כולם בזמן</button>
@@ -275,8 +198,9 @@ textarea.field{min-height:92px;resize:vertical;line-height:1.6}
   <div id="entry-list"></div>
 </section>
 
-<!-- ==================== נתונים ==================== -->
+<!-- נתונים -->
 <section class="view" id="v-dash">
+  <div class="classbar"><select id="class-select-2"></select></div>
   <div class="chips" style="margin-bottom:12px">
     <button class="chip on" data-range="week">שבוע</button>
     <button class="chip" data-range="month">חודש</button>
@@ -287,36 +211,27 @@ textarea.field{min-height:92px;resize:vertical;line-height:1.6}
     <div><label class="f">מתאריך</label><input type="date" id="dash-from" class="field"></div>
     <div><label class="f">עד תאריך</label><input type="date" id="dash-to" class="field"></div>
   </div>
-
   <div class="stats">
     <div class="stat"><b id="st-days">0</b><span>ימי דיווח</span></div>
     <div class="stat s-ontime"><b id="st-ontime">0</b><span>בזמן</span></div>
     <div class="stat s-late"><b id="st-late">0</b><span>איחורים</span></div>
     <div class="stat s-absent"><b id="st-absent">0</b><span>חיסורים</span></div>
   </div>
-
   <div class="sheet">
     <div class="sheet-head"><h2>התפלגות</h2><span class="hint" id="dist-pct"></span></div>
-    <div class="sheet-body">
-      <div class="donut-row">
-        <svg class="donut" viewBox="0 0 42 42" id="donut" aria-hidden="true"></svg>
-        <div class="legend" id="legend"></div>
-      </div>
-    </div>
+    <div class="sheet-body"><div class="donut-row"><svg class="donut" viewBox="0 0 42 42" id="donut" aria-hidden="true"></svg><div class="legend" id="legend"></div></div></div>
   </div>
-
-  <div class="sheet" id="alerts-sheet">
+  <div class="sheet">
     <div class="sheet-head"><h2>דורש התייחסות</h2><span class="hint" id="alert-rule"></span></div>
     <div class="lines" id="alerts-list"></div>
   </div>
-
   <div class="sheet">
     <div class="sheet-head"><h2 id="camp-title">מבצע</h2><span class="hint" id="camp-when"></span></div>
     <div class="lines" id="camp-list"></div>
   </div>
 </section>
 
-<!-- ==================== תלמיד ==================== -->
+<!-- תלמיד -->
 <section class="view" id="v-student">
   <div class="sheet">
     <div class="sheet-body" style="padding-bottom:4px">
@@ -332,15 +247,20 @@ textarea.field{min-height:92px;resize:vertical;line-height:1.6}
   <div id="rep-empty" class="sheet"><div class="empty"><span class="mark">ש</span><p>בחרו תלמיד כדי לראות את היסטוריית התפילות שלו.</p></div></div>
 </section>
 
-<!-- ==================== הגדרות ==================== -->
+<!-- הגדרות -->
 <section class="view" id="v-set">
+  <div class="classbar"><select id="class-select-3"></select></div>
+
   <div class="sheet">
     <div class="sheet-head"><h2>הכיתה</h2><span class="hint" id="count-label"></span></div>
     <div class="sheet-body">
-      <div class="two">
-        <div><label class="f">שם הכיתה</label><input type="text" id="set-class" class="field" placeholder="ט׳ 1"></div>
-        <div><label class="f">שם המדווח</label><input type="text" id="set-teacher" class="field" placeholder="ר׳ …"></div>
+      <label class="f">שם הכיתה</label>
+      <div class="btn-row" style="margin-bottom:11px">
+        <input type="text" id="set-class-name" class="field" style="margin:0" placeholder="ט׳ 1">
+        <button class="btn ghost" id="btn-rename-class" style="width:auto;white-space:nowrap;padding-inline:16px">שמירה</button>
       </div>
+      <label class="f">שם המדווח</label>
+      <input type="text" id="set-teacher" class="field" placeholder="ר׳ …">
       <label class="f">הוספת תלמידים — שם בכל שורה</label>
       <textarea id="add-names" class="field" placeholder="יוסף כהן&#10;אליהו לוי&#10;נתנאל ברוך"></textarea>
       <button class="btn" id="btn-add-names">הוספה לרשימה</button>
@@ -349,7 +269,7 @@ textarea.field{min-height:92px;resize:vertical;line-height:1.6}
   </div>
 
   <div class="sheet">
-    <div class="sheet-head"><h2>מבצע</h2></div>
+    <div class="sheet-head"><h2>מבצע הכיתה</h2></div>
     <div class="sheet-body">
       <label class="f">שם המבצע</label>
       <input type="text" id="camp-name" class="field" placeholder="מבצע מתמידים">
@@ -374,653 +294,40 @@ textarea.field{min-height:92px;resize:vertical;line-height:1.6}
         <div><label class="f">בדיקה של X ימים אחורה</label><input type="number" id="al-days" class="field" min="1"></div>
         <div><label class="f">החל מ־X אירועים</label><input type="number" id="al-max" class="field" min="1"></div>
       </div>
-      <p class="hint" style="margin:-4px 0 10px">אירוע = איחור או חיסור לא מאושר. תלמיד שעובר את הסף יופיע ב“דורש התייחסות”.</p>
+      <p class="hint" style="margin:-4px 0 10px">אירוע = איחור או חיסור לא מאושר. ההתראות הן לכיתה הנוכחית.</p>
       <button class="btn" id="btn-save-alerts">שמירת ההתראות</button>
     </div>
   </div>
 
-  <div class="sheet" id="install-sheet" style="display:none">
-    <div class="sheet-head"><h2>התקנה במכשיר</h2></div>
-    <div class="sheet-body">
-      <p class="hint" style="margin:0 0 11px">התקנה מוסיפה אייקון למסך הבית ופותחת את שחרית כאפליקציה עצמאית, בלי שורת כתובת וגם בלי אינטרנט.</p>
-      <button class="btn gold" id="btn-install">התקנת האפליקציה</button>
-    </div>
-  </div>
-
   <div class="sheet">
-    <div class="sheet-head"><h2>גיבוי ונתונים</h2></div>
+    <div class="sheet-head"><h2>השכבה והמכשיר</h2></div>
     <div class="sheet-body">
-      <p class="hint" style="margin:0 0 11px">הנתונים נשמרים בדפדפן של המכשיר בלבד. כדאי לייצא גיבוי מדי פעם.</p>
+      <p class="hint" style="margin:0 0 11px">קוד השכבה הנוכחי: <b id="layer-code-label">—</b>. כל מי שמקליד אותו רואה את אותן כיתות.</p>
       <div class="btn-row">
         <button class="btn ghost" id="btn-export">ייצוא גיבוי</button>
-        <button class="btn ghost" id="btn-import">שחזור מגיבוי</button>
+        <button class="btn ghost" id="btn-csv">ייצוא לאקסל</button>
       </div>
-      <button class="btn ghost" id="btn-csv" style="margin-top:8px">ייצוא לאקסל (CSV)</button>
-      <button class="btn danger" id="btn-wipe" style="margin-top:8px">מחיקת כל הנתונים</button>
-      <input type="file" id="import-file" accept=".json,application/json" style="display:none">
+      <button class="btn ghost" id="btn-install" style="margin-top:8px;display:none">התקנת האפליקציה במכשיר</button>
+      <button class="btn danger" id="btn-logout" style="margin-top:8px">יציאה והחלפת קוד שכבה</button>
     </div>
   </div>
 </section>
 
-</div><!-- /wrap -->
+</div>
 
 <nav class="tabs">
-  <button class="on" data-view="entry">
-    <svg viewBox="0 0 24 24"><path d="M9 11l2 2 4-4"/><rect x="4" y="4" width="16" height="16" rx="3"/></svg>נוכחות</button>
-  <button data-view="dash">
-    <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 109 9h-9z"/><path d="M14.5 3.6A9 9 0 0121 9.5h-6.5z"/></svg>נתונים</button>
-  <button data-view="student">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c.6-3.6 3.4-5.5 7-5.5s6.4 1.9 7 5.5"/></svg>תלמיד</button>
-  <button data-view="set">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6l1.4 1.4m10 10l1.4 1.4m0-12.8l-1.4 1.4m-10 10l-1.4 1.4"/></svg>הגדרות</button>
+  <button class="on" data-view="entry"><svg viewBox="0 0 24 24"><path d="M9 11l2 2 4-4"/><rect x="4" y="4" width="16" height="16" rx="3"/></svg>נוכחות</button>
+  <button data-view="dash"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 109 9h-9z"/><path d="M14.5 3.6A9 9 0 0121 9.5h-6.5z"/></svg>נתונים</button>
+  <button data-view="student"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c.6-3.6 3.4-5.5 7-5.5s6.4 1.9 7 5.5"/></svg>תלמיד</button>
+  <button data-view="set"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6l1.4 1.4m10 10l1.4 1.4m0-12.8l-1.4 1.4m-10 10l-1.4 1.4"/></svg>הגדרות</button>
 </nav>
 
 <div id="toast"></div>
 
-<script>
-(function(){
-"use strict";
-
-/* ============ נתונים ============ */
-var STATUS = {
-  ontime:{label:'בזמן'}, late:{label:'איחור'},
-  excused:{label:'מאושר'}, absent:{label:'חיסור'}
-};
-var ORDER = ['ontime','late','excused','absent'];
-var KEY = 'shacharit:v1';
-
-var D = {
-  students: [],
-  att: {},                 // { '2026-09-15': { studentId: {s:'ontime', n:'הערה'} } }
-  className: '',
-  teacher: '',
-  camp: { name:'מבצע מתמידים', from:'', to:'', pts:{ontime:2, late:1, excused:0, absent:0} },
-  alerts: { days:14, max:3 }
-};
-
-var mem = null;
-function loadData(){
-  return Promise.resolve().then(function(){
-    if (window.storage && window.storage.get) return window.storage.get(KEY).then(function(r){
-      return r && r.value ? r.value : null;
-    }).catch(function(){ return null; });
-    return null;
-  }).catch(function(){ return null; }).then(function(raw){
-    if (!raw){ try{ raw = localStorage.getItem(KEY); }catch(e){ raw = mem; } }
-    if (!raw) return;
-    try{
-      var o = JSON.parse(raw);
-      D.students = o.students || [];
-      D.att = o.att || {};
-      D.className = o.className || '';
-      D.teacher = o.teacher || '';
-      if (o.camp) D.camp = Object.assign(D.camp, o.camp);
-      if (o.alerts) D.alerts = Object.assign(D.alerts, o.alerts);
-    }catch(e){}
-  });
-}
-var saveTimer;
-function save(){
-  clearTimeout(saveTimer);
-  saveTimer = setTimeout(function(){
-    var s = JSON.stringify(D);
-    mem = s;
-    try{ localStorage.setItem(KEY, s); }catch(e){}
-    if (window.storage && window.storage.set){ try{ window.storage.set(KEY, s); }catch(e){} }
-  }, 150);
-}
-
-/* ============ עזרים ============ */
-function $(s){ return document.querySelector(s); }
-function esc(t){ return String(t==null?'':t).replace(/[&<>"']/g, function(c){
-  return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
-function iso(d){
-  return d.getFullYear() + '-' + ('0'+(d.getMonth()+1)).slice(-2) + '-' + ('0'+d.getDate()).slice(-2);
-}
-function parseISO(s){ var p = s.split('-'); return new Date(+p[0], +p[1]-1, +p[2], 12, 0, 0); }
-function shift(s, n){ var d = parseISO(s); d.setDate(d.getDate()+n); return iso(d); }
-function today(){ return iso(new Date()); }
-function uid(){ return 's' + Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
-
-var hebFmt=null, dayFmt=null, gregFmt=null;
-try{ hebFmt = new Intl.DateTimeFormat('he-u-ca-hebrew',{day:'numeric',month:'long',year:'numeric'}); }catch(e){}
-try{ dayFmt = new Intl.DateTimeFormat('he-IL',{weekday:'long'}); }catch(e){}
-try{ gregFmt = new Intl.DateTimeFormat('he-IL',{day:'numeric',month:'long',year:'numeric'}); }catch(e){}
-var GEM = [[400,'ת'],[300,'ש'],[200,'ר'],[100,'ק'],[90,'צ'],[80,'פ'],[70,'ע'],[60,'ס'],[50,'נ'],
-           [40,'מ'],[30,'ל'],[20,'כ'],[10,'י'],[9,'ט'],[8,'ח'],[7,'ז'],[6,'ו'],[5,'ה'],[4,'ד'],[3,'ג'],[2,'ב'],[1,'א']];
-function gematria(n){
-  var out = '';
-  while (n > 0){
-    if (n === 15){ out += 'טו'; break; }
-    if (n === 16){ out += 'טז'; break; }
-    for (var i=0;i<GEM.length;i++){ if (GEM[i][0] <= n){ out += GEM[i][1]; n -= GEM[i][0]; break; } }
-  }
-  if (out.length === 1) return out + '׳';
-  return out.slice(0,-1) + '״' + out.slice(-1);
-}
-function hebrewDate(s){
-  try{
-    if (!hebFmt) return '';
-    if (!hebFmt.formatToParts) return hebFmt.format(parseISO(s));
-    var p = hebFmt.formatToParts(parseISO(s)), day='', month='', year='';
-    for (var i=0;i<p.length;i++){
-      if (p[i].type === 'day') day = p[i].value;
-      else if (p[i].type === 'month') month = p[i].value;
-      else if (p[i].type === 'year') year = p[i].value;
-    }
-    var dn = parseInt(day.replace(/\D/g,''),10), yn = parseInt(year.replace(/\D/g,''),10);
-    if (!dn || !yn || !month) return hebFmt.format(parseISO(s));
-    return gematria(dn) + ' ב' + month + ' ' + gematria(yn % 1000);
-  }catch(e){ return ''; }
-}
-function weekday(s){ try{ return dayFmt ? dayFmt.format(parseISO(s)) : ''; }catch(e){ return ''; } }
-function gregDate(s){ try{ return gregFmt ? gregFmt.format(parseISO(s)) : s; }catch(e){ return s; } }
-function shortDate(s){ var p = s.split('-'); return p[2] + '.' + p[1]; }
-
-function toast(t){
-  var el = $('#toast'); el.textContent = t; el.classList.add('on');
-  clearTimeout(el._t); el._t = setTimeout(function(){ el.classList.remove('on'); }, 2100);
-}
-function sortedStudents(){
-  return D.students.slice().sort(function(a,b){ return a.name.localeCompare(b.name,'he'); });
-}
-function rec(date, sid){ return (D.att[date] || {})[sid] || null; }
-function datesBetween(from, to){
-  var out = [], k;
-  for (k in D.att){ if (k >= from && k <= to && Object.keys(D.att[k]).length) out.push(k); }
-  return out.sort();
-}
-function tally(from, to, sid){
-  var t = {ontime:0, late:0, excused:0, absent:0, days:0};
-  var ds = datesBetween(from, to);
-  for (var i=0;i<ds.length;i++){
-    var day = D.att[ds[i]], counted = false;
-    for (var id in day){
-      if (sid && id !== sid) continue;
-      if (!sid && !D.students.some(function(s){ return s.id === id; })) continue;
-      t[day[id].s]++; counted = true;
-    }
-    if (counted) t.days++;
-  }
-  return t;
-}
-
-/* ============ ניווט ============ */
-var views = {entry:'#v-entry', dash:'#v-dash', student:'#v-student', set:'#v-set'};
-function go(name){
-  for (var k in views) $(views[k]).classList.toggle('on', k === name);
-  var btns = document.querySelectorAll('.tabs button');
-  for (var i=0;i<btns.length;i++) btns[i].classList.toggle('on', btns[i].dataset.view === name);
-  window.scrollTo(0,0);
-  if (name === 'dash') renderDash();
-  if (name === 'student') { fillStudentSelect(); renderReport(); }
-  if (name === 'set') renderSettings();
-}
-document.querySelector('.tabs').addEventListener('click', function(e){
-  var b = e.target.closest('button[data-view]'); if (b) go(b.dataset.view);
-});
-
-/* ============ מסך נוכחות ============ */
-var cur = today();
-
-function renderEntry(){
-  $('#day-heb').textContent = hebrewDate(cur) || gregDate(cur);
-  $('#day-greg').textContent = weekday(cur) + ' · ' + gregDate(cur);
-  $('#day-input').value = cur;
-
-  var list = $('#entry-list');
-  if (!D.students.length){
-    list.innerHTML = '<div class="sheet"><div class="empty"><span class="mark">ש</span>' +
-      '<p>עוד אין תלמידים ברשימה.<br>אפשר להדביק את כל שמות הכיתה בבת אחת.</p>' +
-      '<button class="btn" id="goto-set" style="max-width:240px;margin:0 auto">מעבר להגדרות</button></div></div>';
-    $('#goto-set').onclick = function(){ go('set'); };
-    $('#day-meter').style.width = '0%';
-    $('#day-count').textContent = '';
-    return;
-  }
-
-  var st = sortedStudents(), html = '', done = 0;
-  for (var i=0;i<st.length;i++){
-    var s = st[i], r = rec(cur, s.id);
-    if (r) done++;
-    var segs = '';
-    for (var j=0;j<ORDER.length;j++){
-      var k = ORDER[j];
-      segs += '<button data-s="' + k + '" aria-pressed="' + (r && r.s === k) + '">' + STATUS[k].label + '</button>';
-    }
-    var note = r && r.n ? r.n : '';
-    html += '<div class="row' + (r ? ' done' : '') + '" data-id="' + s.id + '">' +
-      '<div class="row-top">' +
-        '<div class="sigil">' + esc(s.name.charAt(0)) + '</div>' +
-        '<div class="row-name">' + esc(s.name) + '</div>' +
-        '<button class="note-btn' + (note ? ' has' : '') + '" data-act="note">' + (note ? 'הערה ✓' : 'הערה') + '</button>' +
-      '</div>' +
-      '<div class="seg">' + segs + '</div>' +
-      '<div class="note-wrap' + (note ? ' open' : '') + '"><input type="text" value="' + esc(note) + '" placeholder="סיבה או הערה קצרה"></div>' +
-    '</div>';
-  }
-  list.innerHTML = html;
-  $('#day-meter').style.width = (done / st.length * 100) + '%';
-  $('#day-count').textContent = done + '/' + st.length;
-}
-
-$('#entry-list').addEventListener('click', function(e){
-  var row = e.target.closest('.row'); if (!row) return;
-  var sid = row.dataset.id;
-  var seg = e.target.closest('.seg button');
-  if (seg){
-    var k = seg.dataset.s;
-    if (!D.att[cur]) D.att[cur] = {};
-    var prev = D.att[cur][sid];
-    if (prev && prev.s === k){ delete D.att[cur][sid]; }
-    else { D.att[cur][sid] = {s:k, n: prev ? prev.n : ''}; }
-    save(); renderEntry();
-    return;
-  }
-  if (e.target.closest('[data-act="note"]')){
-    var w = row.querySelector('.note-wrap');
-    w.classList.toggle('open');
-    if (w.classList.contains('open')) w.querySelector('input').focus();
-  }
-});
-$('#entry-list').addEventListener('change', function(e){
-  if (e.target.tagName !== 'INPUT') return;
-  var row = e.target.closest('.row'); if (!row) return;
-  var sid = row.dataset.id, v = e.target.value.trim();
-  if (!rec(cur, sid)){ toast('בחרו קודם סטטוס לתלמיד'); e.target.value = ''; return; }
-  D.att[cur][sid].n = v;
-  save(); renderEntry();
-});
-
-$('#day-prev').onclick = function(){ cur = shift(cur,-1); renderEntry(); };
-$('#day-next').onclick = function(){ cur = shift(cur, 1); renderEntry(); };
-$('#btn-today').onclick = function(){ cur = today(); renderEntry(); };
-$('#day-open').onclick = function(){
-  var i = $('#day-input');
-  if (i.showPicker) { try { i.showPicker(); return; } catch(e){} }
-  i.style.position='static'; i.style.opacity=1; i.style.width='100%'; i.style.height='auto';
-  i.style.pointerEvents='auto'; i.style.marginTop='10px'; i.style.padding='8px'; i.style.borderRadius='8px';
-};
-$('#day-input').onchange = function(){ if (this.value){ cur = this.value; renderEntry(); } };
-$('#btn-all-ontime').onclick = function(){
-  if (!D.students.length) return;
-  if (!D.att[cur]) D.att[cur] = {};
-  for (var i=0;i<D.students.length;i++){
-    var id = D.students[i].id;
-    if (!D.att[cur][id]) D.att[cur][id] = {s:'ontime', n:''};
-  }
-  save(); renderEntry(); toast('כל מי שלא סומן — נרשם כבזמן');
-};
-$('#btn-clear-day').onclick = function(){
-  if (!confirm('למחוק את כל הדיווחים של ' + gregDate(cur) + '?')) return;
-  delete D.att[cur]; save(); renderEntry(); toast('הדיווחים של היום נמחקו');
-};
-
-/* ============ לוח נתונים ============ */
-var range = 'week';
-function rangeDates(){
-  var to = today(), from;
-  if (range === 'week') from = shift(to, -6);
-  else if (range === 'month') from = shift(to, -29);
-  else if (range === 'term') from = '2000-01-01';
-  else { from = $('#dash-from').value || shift(to,-6); to = $('#dash-to').value || today(); }
-  return [from, to];
-}
-document.querySelector('#v-dash .chips').addEventListener('click', function(e){
-  var c = e.target.closest('.chip'); if (!c) return;
-  range = c.dataset.range;
-  var all = this.querySelectorAll('.chip');
-  for (var i=0;i<all.length;i++) all[i].classList.toggle('on', all[i] === c);
-  $('#dash-custom').style.display = range === 'custom' ? 'grid' : 'none';
-  if (range === 'custom'){
-    if (!$('#dash-from').value) $('#dash-from').value = shift(today(), -29);
-    if (!$('#dash-to').value) $('#dash-to').value = today();
-  }
-  renderDash();
-});
-$('#dash-from').onchange = renderDash;
-$('#dash-to').onchange = renderDash;
-
-function donut(counts){
-  var total = counts.ontime + counts.late + counts.excused + counts.absent;
-  var colors = {ontime:'var(--ok)', late:'var(--late)', excused:'var(--excused)', absent:'var(--absent)'};
-  var svg = '<circle cx="21" cy="21" r="15.9" fill="none" stroke="var(--rule)" stroke-width="5"/>';
-  if (total){
-    var off = 25;
-    for (var i=0;i<ORDER.length;i++){
-      var k = ORDER[i], pct = counts[k] / total * 100;
-      if (pct <= 0) continue;
-      svg += '<circle cx="21" cy="21" r="15.9" fill="none" stroke="' + colors[k] + '" stroke-width="5" ' +
-             'stroke-dasharray="' + pct.toFixed(2) + ' ' + (100-pct).toFixed(2) + '" ' +
-             'stroke-dashoffset="' + off.toFixed(2) + '"/>';
-      off -= pct;
-      if (off < 0) off += 100;
-    }
-  }
-  $('#donut').innerHTML = svg;
-  var leg = '';
-  for (var j=0;j<ORDER.length;j++){
-    var kk = ORDER[j];
-    leg += '<div><i style="background:' + colors[kk] + '"></i>' + STATUS[kk].label +
-           '<b>' + counts[kk] + '</b></div>';
-  }
-  $('#legend').innerHTML = leg;
-  var rate = total ? Math.round(counts.ontime / total * 100) : 0;
-  $('#dist-pct').textContent = total ? rate + '% בזמן' : 'אין נתונים';
-}
-
-function renderDash(){
-  var r = rangeDates(), from = r[0], to = r[1];
-  var t = tally(from, to, null);
-  $('#st-days').textContent = t.days;
-  $('#st-ontime').textContent = t.ontime;
-  $('#st-late').textContent = t.late;
-  $('#st-absent').textContent = t.absent;
-  donut(t);
-
-  /* התראות */
-  var days = D.alerts.days, max = D.alerts.max;
-  var aFrom = shift(today(), -(days-1));
-  $('#alert-rule').textContent = max + '+ אירועים ב־' + days + ' ימים';
-  var rows = [], st = sortedStudents();
-  for (var i=0;i<st.length;i++){
-    var c = tally(aFrom, today(), st[i].id);
-    var ev = c.late + c.absent;
-    if (ev >= max) rows.push({s:st[i], ev:ev, late:c.late, abs:c.absent});
-  }
-  rows.sort(function(a,b){ return b.ev - a.ev; });
-  $('#alerts-list').innerHTML = rows.length ? rows.map(function(x){
-    return '<div class="alert"><div class="grow">' + esc(x.s.name) +
-      '<small>' + x.late + ' איחורים · ' + x.abs + ' חיסורים</small></div>' +
-      '<button class="icon-btn" data-open="' + x.s.id + '">›</button></div>';
-  }).join('') : '<div><span class="hint">אין חריגות בטווח הזה.</span></div>';
-
-  /* מבצע */
-  var cf = D.camp.from || from, ct = D.camp.to || to;
-  $('#camp-title').textContent = D.camp.name || 'מבצע';
-  $('#camp-when').textContent = (D.camp.from && D.camp.to)
-    ? shortDate(D.camp.from) + '–' + shortDate(D.camp.to) : 'ללא תאריכים';
-  var board = st.map(function(s){
-    var c = tally(cf, ct, s.id);
-    var p = c.ontime*(+D.camp.pts.ontime||0) + c.late*(+D.camp.pts.late||0) + c.excused*(+D.camp.pts.excused||0);
-    return {name:s.name, p:p, ontime:c.ontime};
-  }).sort(function(a,b){ return b.p - a.p || b.ontime - a.ontime; });
-  var top = board.length ? board[0].p : 0;
-  $('#camp-list').innerHTML = board.length ? board.map(function(x,i){
-    return '<div><div class="rank' + (i===0 && x.p>0 ? ' top' : '') + '">' + (i+1) + '</div>' +
-      '<div class="grow">' + esc(x.name) + '</div>' +
-      '<div class="num">' + x.p + '</div></div>';
-  }).join('') : '<div><span class="hint">אין תלמידים ברשימה.</span></div>';
-}
-$('#alerts-list').addEventListener('click', function(e){
-  var b = e.target.closest('[data-open]'); if (!b) return;
-  go('student'); $('#sel-student').value = b.dataset.open; renderReport();
-});
-
-/* ============ דוח תלמיד ============ */
-function fillStudentSelect(){
-  var sel = $('#sel-student'), keep = sel.value;
-  sel.innerHTML = '<option value="">בחירת תלמיד…</option>' + sortedStudents().map(function(s){
-    return '<option value="' + s.id + '">' + esc(s.name) + '</option>';
-  }).join('');
-  sel.value = keep;
-  if (!$('#rep-from').value) $('#rep-from').value = shift(today(), -29);
-  if (!$('#rep-to').value) $('#rep-to').value = today();
-}
-$('#sel-student').onchange = renderReport;
-$('#rep-from').onchange = renderReport;
-$('#rep-to').onchange = renderReport;
-
-function findStudent(id){
-  for (var i=0;i<D.students.length;i++) if (D.students[i].id === id) return D.students[i];
-  return null;
-}
-
-function renderReport(){
-  var id = $('#sel-student').value, s = findStudent(id);
-  if (!s){ $('#rep-body').style.display = 'none'; $('#rep-empty').style.display = 'block'; return; }
-  $('#rep-empty').style.display = 'none'; $('#rep-body').style.display = 'block';
-  var from = $('#rep-from').value || shift(today(),-29), to = $('#rep-to').value || today();
-  var t = tally(from, to, id);
-  var total = t.ontime + t.late + t.excused + t.absent;
-  var rate = total ? Math.round(t.ontime / total * 100) : 0;
-
-  var ds = datesBetween(from, to).filter(function(d){ return D.att[d][id]; }).reverse();
-  var hist = ds.map(function(d){
-    var r = D.att[d][id];
-    var opts = ORDER.map(function(k){
-      return '<option value="' + k + '"' + (k === r.s ? ' selected' : '') + '>' + STATUS[k].label + '</option>';
-    }).join('');
-    return '<div><div class="num" style="width:44px">' + shortDate(d) + '</div>' +
-      '<div class="grow" style="font-size:12.5px;color:var(--muted)">' + esc(r.n || weekday(d)) + '</div>' +
-      '<select class="hist" data-date="' + d + '" style="padding:5px 8px;border:1px solid var(--rule);border-radius:7px;background:#fbf7ef;font-size:12.5px">' + opts + '</select></div>';
-  }).join('');
-
-  $('#rep-body').innerHTML =
-    '<div class="stats">' +
-      '<div class="stat"><b>' + rate + '%</b><span>בזמן</span></div>' +
-      '<div class="stat s-ontime"><b>' + t.ontime + '</b><span>בזמן</span></div>' +
-      '<div class="stat s-late"><b>' + t.late + '</b><span>איחורים</span></div>' +
-      '<div class="stat s-absent"><b>' + t.absent + '</b><span>חיסורים</span></div>' +
-    '</div>' +
-    '<div class="sheet"><div class="sheet-head"><h2>יומן דיווחים</h2>' +
-      '<span class="hint">' + total + ' רשומות</span></div>' +
-      '<div class="lines" id="hist-lines">' + (hist || '<div><span class="hint">אין דיווחים בטווח שנבחר.</span></div>') + '</div></div>' +
-    '<div class="sheet"><div class="sheet-head"><h2>הודעה להורים</h2>' +
-      '<span class="hint">ניסוח אוטומטי מהנתונים</span></div>' +
-      '<div class="sheet-body">' +
-        '<div class="chips" style="margin-bottom:10px">' +
-          '<button class="chip on" data-tone="auto">לפי הנתונים</button>' +
-          '<button class="chip" data-tone="praise">שבח</button>' +
-          '<button class="chip" data-tone="concern">עדכון וחיזוק</button>' +
-        '</div>' +
-        '<textarea id="msg" class="field" style="min-height:190px"></textarea>' +
-        '<div class="btn-row">' +
-          '<button class="btn" id="btn-copy">העתקה</button>' +
-          '<button class="btn gold" id="btn-wa">שליחה בוואטסאפ</button>' +
-        '</div>' +
-        '<label class="f" style="margin-top:11px">טלפון ההורים (לשליחה ישירה)</label>' +
-        '<input type="tel" id="rep-phone" class="field" value="' + esc(s.phone || '') + '" placeholder="05X-XXXXXXX">' +
-      '</div></div>';
-
-  buildMessage('auto');
-
-  $('#hist-lines').addEventListener('change', function(e){
-    var sel = e.target.closest('select.hist'); if (!sel) return;
-    D.att[sel.dataset.date][id].s = sel.value; save(); renderReport(); toast('הדיווח עודכן');
-  });
-  $('#rep-body').querySelector('.chips').addEventListener('click', function(e){
-    var c = e.target.closest('.chip'); if (!c) return;
-    var all = this.querySelectorAll('.chip');
-    for (var i=0;i<all.length;i++) all[i].classList.toggle('on', all[i] === c);
-    buildMessage(c.dataset.tone);
-  });
-  $('#rep-phone').onchange = function(){ s.phone = this.value.trim(); save(); };
-  $('#btn-copy').onclick = function(){
-    var ta = $('#msg'); ta.select();
-    if (navigator.clipboard) navigator.clipboard.writeText(ta.value).then(function(){ toast('ההודעה הועתקה'); });
-    else { document.execCommand('copy'); toast('ההודעה הועתקה'); }
-  };
-  $('#btn-wa').onclick = function(){
-    var p = ($('#rep-phone').value || '').replace(/\D/g,'');
-    if (p.indexOf('0') === 0) p = '972' + p.slice(1);
-    else if (p.indexOf('972') !== 0 && p.length === 9) p = '972' + p;
-    var url = 'https://wa.me/' + (p || '') + '?text=' + encodeURIComponent($('#msg').value);
-    window.open(url, '_blank');
-  };
-
-  function buildMessage(tone){
-    var name = s.name;
-    var pct = rate;
-    if (tone === 'auto') tone = pct >= 90 ? 'praise' : (pct >= 75 ? 'neutral' : 'concern');
-    var open = 'בס"ד\nשלום רב להורי ' + name + ',\n\n';
-    var span = 'ריכזנו את נתוני ההגעה לתפילת שחרית בין ' + gregDate(from) + ' ל־' + gregDate(to) + ':\n';
-    var body = '• הגעה בזמן: ' + t.ontime + '\n• איחורים: ' + t.late +
-               '\n• היעדרויות מאושרות: ' + t.excused + '\n• היעדרויות ללא אישור: ' + t.absent +
-               '\n• אחוז הגעה בזמן: ' + pct + '%\n\n';
-    var mid;
-    if (tone === 'praise'){
-      mid = 'רצינו לשתף אתכם בהערכה. ' + name + ' מקפיד להגיע בזמן ומהווה דוגמה לחבריו, ' +
-            'וההתמדה הזו ניכרת גם באווירת הלימוד בכיתה. ישר כוח על החינוך בבית.\n\n';
-    } else if (tone === 'neutral'){
-      mid = 'התמונה הכללית טובה, ולצידה יש עוד מקום להידוק בכמה בקרים. ' +
-            'נשמח אם תסייעו ל' + name + ' ביציאה מוקדמת יותר מהבית, כדי להגיע בתחילת התפילה.\n\n';
-    } else {
-      mid = 'בתקופה האחרונה יש קושי בהגעה בזמן לתפילה. אנחנו מאמינים ש' + name +
-            ' יכול לשפר את זה, ונשמח לחשוב יחד אתכם איך לסייע — בסדר הבוקר בבית או בליווי מהכיתה. ' +
-            'אשמח לשיחה קצרה בנושא.\n\n';
-    }
-    var sign = 'בברכה,\n' + (D.teacher || 'צוות הכיתה') + (D.className ? '\n' + D.className : '');
-    $('#msg').value = open + span + body + mid + sign;
-  }
-}
-
-/* ============ הגדרות ============ */
-function renderSettings(){
-  $('#set-class').value = D.className;
-  $('#set-teacher').value = D.teacher;
-  $('#camp-name').value = D.camp.name || '';
-  $('#camp-from').value = D.camp.from || '';
-  $('#camp-to').value = D.camp.to || '';
-  $('#pt-ontime').value = D.camp.pts.ontime;
-  $('#pt-late').value = D.camp.pts.late;
-  $('#pt-excused').value = D.camp.pts.excused;
-  $('#al-days').value = D.alerts.days;
-  $('#al-max').value = D.alerts.max;
-  $('#count-label').textContent = D.students.length + ' תלמידים';
-  $('#klass-label').textContent = [D.className, D.teacher].filter(Boolean).join(' · ');
-
-  var st = sortedStudents();
-  $('#roster').innerHTML = st.length ? st.map(function(s){
-    return '<div data-id="' + s.id + '">' +
-      '<div class="sigil">' + esc(s.name.charAt(0)) + '</div>' +
-      '<div class="grow">' + esc(s.name) + (s.phone ? '<small class="hint" style="display:block">' + esc(s.phone) + '</small>' : '') + '</div>' +
-      '<button class="icon-btn" data-act="rename" title="שינוי שם">✎</button>' +
-      '<button class="icon-btn" data-act="del" title="הסרה">✕</button></div>';
-  }).join('') : '<div><span class="hint">הרשימה ריקה.</span></div>';
-}
-$('#roster').addEventListener('click', function(e){
-  var b = e.target.closest('[data-act]'); if (!b) return;
-  var id = b.closest('[data-id]').dataset.id, s = findStudent(id);
-  if (b.dataset.act === 'rename'){
-    var n = prompt('שם התלמיד', s.name);
-    if (n && n.trim()){ s.name = n.trim(); save(); renderSettings(); }
-  } else {
-    if (!confirm('להסיר את ' + s.name + ' מהרשימה? הדיווחים שלו יימחקו.')) return;
-    D.students = D.students.filter(function(x){ return x.id !== id; });
-    for (var d in D.att) delete D.att[d][id];
-    save(); renderSettings(); toast('התלמיד הוסר');
-  }
-});
-$('#btn-add-names').onclick = function(){
-  var lines = $('#add-names').value.split('\n').map(function(x){ return x.trim(); }).filter(Boolean);
-  if (!lines.length){ toast('לא הוזנו שמות'); return; }
-  var added = 0;
-  lines.forEach(function(n){
-    if (D.students.some(function(s){ return s.name === n; })) return;
-    D.students.push({id:uid(), name:n, phone:''}); added++;
-  });
-  $('#add-names').value = '';
-  save(); renderSettings(); renderEntry();
-  toast(added ? 'נוספו ' + added + ' תלמידים' : 'כל השמות כבר קיימים');
-};
-$('#set-class').onchange = function(){ D.className = this.value.trim(); save(); renderSettings(); };
-$('#set-teacher').onchange = function(){ D.teacher = this.value.trim(); save(); renderSettings(); };
-$('#btn-save-camp').onclick = function(){
-  D.camp.name = $('#camp-name').value.trim() || 'מבצע';
-  D.camp.from = $('#camp-from').value;
-  D.camp.to = $('#camp-to').value;
-  D.camp.pts = {
-    ontime:+$('#pt-ontime').value || 0,
-    late:+$('#pt-late').value || 0,
-    excused:+$('#pt-excused').value || 0,
-    absent:0
-  };
-  save(); toast('המבצע נשמר');
-};
-$('#btn-save-alerts').onclick = function(){
-  D.alerts.days = Math.max(1, +$('#al-days').value || 14);
-  D.alerts.max = Math.max(1, +$('#al-max').value || 3);
-  save(); toast('ההתראות נשמרו');
-};
-
-/* ---- גיבוי ---- */
-function download(name, text, type){
-  var blob = new Blob(['\ufeff' + text], {type:(type||'application/json') + ';charset=utf-8'});
-  var a = document.createElement('a');
-  a.href = URL.createObjectURL(blob); a.download = name;
-  document.body.appendChild(a); a.click();
-  setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 800);
-}
-$('#btn-export').onclick = function(){
-  download('shacharit-backup-' + today() + '.json', JSON.stringify(D, null, 1));
-  toast('קובץ הגיבוי ירד');
-};
-$('#btn-import').onclick = function(){ $('#import-file').click(); };
-$('#import-file').onchange = function(){
-  var f = this.files[0]; if (!f) return;
-  var r = new FileReader();
-  r.onload = function(){
-    try{
-      var o = JSON.parse(String(r.result).replace(/^\ufeff/,''));
-      if (!o.students) throw 0;
-      D.students = o.students; D.att = o.att || {};
-      D.className = o.className || ''; D.teacher = o.teacher || '';
-      if (o.camp) D.camp = Object.assign(D.camp, o.camp);
-      if (o.alerts) D.alerts = Object.assign(D.alerts, o.alerts);
-      save(); renderEntry(); renderSettings(); toast('הגיבוי שוחזר');
-    }catch(e){ toast('הקובץ אינו קובץ גיבוי תקין'); }
-  };
-  r.readAsText(f); this.value = '';
-};
-$('#btn-csv').onclick = function(){
-  var rows = [['תאריך','יום','תלמיד','סטטוס','הערה']];
-  Object.keys(D.att).sort().forEach(function(d){
-    for (var id in D.att[d]){
-      var s = findStudent(id); if (!s) continue;
-      rows.push([d, weekday(d), s.name, STATUS[D.att[d][id].s].label, D.att[d][id].n || '']);
-    }
-  });
-  var csv = rows.map(function(r){
-    return r.map(function(c){ return '"' + String(c).replace(/"/g,'""') + '"'; }).join(',');
-  }).join('\n');
-  download('shacharit-' + today() + '.csv', csv, 'text/csv');
-  toast('הקובץ ירד');
-};
-$('#btn-wipe').onclick = function(){
-  if (!confirm('למחוק את כל התלמידים והדיווחים? אין דרך לשחזר בלי גיבוי.')) return;
-  if (!confirm('בטוח? הפעולה סופית.')) return;
-  D.students = []; D.att = {};
-  save(); renderEntry(); renderSettings(); toast('הנתונים נמחקו');
-};
-
-/* ============ התקנה ועבודה ללא רשת ============ */
-if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0){
-  window.addEventListener('load', function(){
-    navigator.serviceWorker.register('sw.js').catch(function(){});
-  });
-}
-var deferredPrompt = null;
-window.addEventListener('beforeinstallprompt', function(e){
-  e.preventDefault(); deferredPrompt = e;
-  $('#install-sheet').style.display = 'block';
-});
-$('#btn-install').onclick = function(){
-  if (!deferredPrompt){ toast('פתחו את תפריט הדפדפן ובחרו “התקנת אפליקציה”'); return; }
-  deferredPrompt.prompt();
-  deferredPrompt.userChoice.then(function(){ deferredPrompt = null; $('#install-sheet').style.display = 'none'; });
-};
-window.addEventListener('appinstalled', function(){
-  deferredPrompt = null; $('#install-sheet').style.display = 'none'; toast('שחרית הותקנה במכשיר');
-});
-
-/* ============ הפעלה ============ */
-loadData().then(function(){
-  $('#klass-label').textContent = [D.className, D.teacher].filter(Boolean).join(' · ');
-  renderEntry();
-});
-
-})();
-</script>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
